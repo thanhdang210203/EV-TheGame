@@ -20,13 +20,10 @@ public class If_touch_then_win : MonoBehaviour
         if (ObjectCollidedWith.collider.tag == "Line")
         {
             
-            if (linecrossed)
-            {
-            AudioSource.PlayClipAtPoint(Start, new Vector3(0, 0, 0));
+            AudioSource.PlayOneShot(Start, new Vector3(0, 0, 0));
             Debug.Log("Let's start!");
             AudioSource.PlayClipAtPoint(BackgroundMusic, new Vector3(0, 0, 0));
-            linecrossed = false;
-            }
+            
             
 
         }
