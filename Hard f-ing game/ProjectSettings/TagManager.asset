@@ -11,11 +11,12 @@ TagManager:
   - Line
   - Obstical
   - cam change line
+  - Fire
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 
