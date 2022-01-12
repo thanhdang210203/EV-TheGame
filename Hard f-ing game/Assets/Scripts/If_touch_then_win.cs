@@ -29,7 +29,7 @@ public class If_touch_then_win : MonoBehaviour
             AudioSource.PlayClipAtPoint(Win, new Vector3(0, 0, 0));
             Debug.Log("You have won!");
             SceneManager.LoadScene("Win_Screen");
-            DontDestroyOnLoad(this.gameObject);
+            
         }
 
         if (ObjectCollidedWith.collider.tag == "Base")
