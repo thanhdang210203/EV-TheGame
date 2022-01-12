@@ -17,6 +17,11 @@ public class Cube_movement : MonoBehaviour
     public float groundDistance = 0.2f;
     private Vector3 velocity;
     private bool isGrounded;
+    private Rigidbody player;
+    void Start()
+    {
+     player = GetComponent<Rigidbody>();   
+    }
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -43,6 +48,7 @@ public class Cube_movement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
+
         }
 
         velocity.y += gravity * Time.deltaTime;
