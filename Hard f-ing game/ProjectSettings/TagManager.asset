@@ -12,6 +12,8 @@ TagManager:
   - Obstical
   - cam change line
   - Fire
+  - Line2
+  - Object
   layers:
   - Default
   - TransparentFX

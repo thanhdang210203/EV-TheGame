@@ -9,7 +9,9 @@ public class If_touch_then_win : MonoBehaviour
     public AudioClip Start;
     public AudioClip BackgroundMusic;
     public AudioClip Win;
-    public bool linecrossed = true;
+    public AudioClip Noti;
+    private string str = "hello";
+    [SerializeField] private GameObject FloatingNoti;
     void Update()
     {
         
@@ -17,21 +19,36 @@ public class If_touch_then_win : MonoBehaviour
     void OnCollisionEnter(Collision ObjectCollidedWith)
     {   
         
-        if (ObjectCollidedWith.collider.tag == "Line")
+        if (ObjectCollidedWith.collider.tag == "Object")
         {
-            
-            AudioSource.PlayClipAtPoint(Start, new Vector3(0, 0, 0));
-            Debug.Log("Let's start!");
-            AudioSource.PlayClipAtPoint(BackgroundMusic, new Vector3(0, 0, 0));
-            
-            
+            if(this.gameObject.tag == "Line")
+            {
+                AudioSource.PlayClipAtPoint(Start, new Vector3(0, 0, 0));
+                Debug.Log("Let's start!");
+                AudioSource.PlayClipAtPoint(BackgroundMusic, new Vector3(0, 0, 0));
+            }
 
+            else if (this.gameObject.tag == "WinBlock")
+            {
+                AudioSource.PlayClipAtPoint(Win, new Vector3(0, 0, 0));
+                Debug.Log("You have won!");
+            }
+
+            else if (this.gameObject.tag == "Base")
+            {
+                AudioSource.PlayClipAtPoint(Noti, new Vector3(0, 0, 0));
+                Debug.Log("Line crossed");
+                ShowNoti(str);
+
+            }
         }
-        if (ObjectCollidedWith.collider.tag == "WinBlock")
+        void ShowNoti(string text)
         {
-            AudioSource.PlayClipAtPoint(Win, new Vector3(0, 0, 0));
-            Debug.Log("You have won!");
+            if (FloatingNoti)
+            {
+                GameObject prefab = Instantiate(FloatingNoti, transform.position, Quaternion.identity);
+                prefab.GetComponentInChildren<TextMesh>().text = text;
+            }
         }
-
     }
 }

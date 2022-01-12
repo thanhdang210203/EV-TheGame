@@ -18,10 +18,8 @@ public class Cube_movement : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded;
     private Rigidbody player;
-    void Start()
-    {
-     player = GetComponent<Rigidbody>();   
-    }
+    public bool AbleToJump = false;
+   
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -42,17 +40,26 @@ public class Cube_movement : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            controller.Move(moveDir.normalized * speed * Time.deltaTime);
+            controller.Move(moveDir * speed * Time.deltaTime);
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
-
-        }
+        
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
+        if(AbleToJump)
+        {
+            PlayerJump();
+        }
+
+        void PlayerJump()
+        {
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
+
+            }
+        }
     }
 }
