@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Destroy_Noti : MonoBehaviour
 {
-    [SerializeField] private float DestroyIn = 0.5f;
+    [SerializeField] private float DestroyIn = 3.0f;
     
     void Start()
     {

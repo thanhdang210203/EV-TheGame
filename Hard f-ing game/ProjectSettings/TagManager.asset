@@ -10,10 +10,8 @@ TagManager:
   - side camera
   - Line
   - Obstical
-  - cam change line
-  - Fire
-  - Line2
   - Object
+  - Middle_line
   layers:
   - Default
   - TransparentFX

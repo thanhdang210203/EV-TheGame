@@ -19,6 +19,8 @@ public class Cube_movement : MonoBehaviour
     private bool isGrounded;
     private Rigidbody player;
     public bool AbleToJump = false;
+    public float turnspeed = 100.0f;
+    public float movespeed = 4.0f;
    
     void Update()
     {
@@ -41,6 +43,9 @@ public class Cube_movement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir * speed * Time.deltaTime);
+            transform.Rotate(Vector3.up * turnspeed * Input.GetAxis("Horizontal") * Time.deltaTime);
+            transform.Translate(0f, 0f, movespeed * Input.GetAxis("Vertical") * Time.deltaTime);
+            
         }
 
         

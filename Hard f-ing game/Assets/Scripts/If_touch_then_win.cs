@@ -9,7 +9,7 @@ public class If_touch_then_win : MonoBehaviour
     public AudioClip Start;
     public AudioClip Win;
     public AudioClip Noti;
-    private string str = "hello";
+    private string str = "PASS THROUGH THE MAZE";
     [SerializeField] private GameObject FloatingNoti;
     void Update()
     {
@@ -24,7 +24,7 @@ public class If_touch_then_win : MonoBehaviour
             Debug.Log("Let's start!");
         }
 
-        if (ObjectCollidedWith.collider.tag == "WinBlock")
+        else if (ObjectCollidedWith.collider.tag == "WinBlock")
         {
             AudioSource.PlayClipAtPoint(Win, new Vector3(0, 0, 0));
             Debug.Log("You have won!");
@@ -32,7 +32,7 @@ public class If_touch_then_win : MonoBehaviour
             
         }
 
-        if (ObjectCollidedWith.collider.tag == "Base")
+        else if (ObjectCollidedWith.collider.tag == "Middle_line")
         {
             AudioSource.PlayClipAtPoint(Noti, new Vector3(0, 0, 0));
             Debug.Log("Line crossed");
