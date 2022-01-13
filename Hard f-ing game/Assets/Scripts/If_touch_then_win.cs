@@ -17,6 +17,9 @@ public class If_touch_then_win : MonoBehaviour
     private bool playOnce = true;
     [SerializeField] private GameObject Maze;
     public GameObject WinMenu;
+    public Button Next;
+    public Button Menu;
+    public Button quit;
     void Update()
     {
         Float_Noti = gameObject.GetComponent<Animation>();
@@ -45,7 +48,7 @@ public class If_touch_then_win : MonoBehaviour
             Debug.Log("Line crossed");
             ShowNoti(str);
             StartCoroutine(MazeGenerate());
-          playOnce = true;
+            playOnce = true;
         }
     }
     void ShowNoti(string text)
@@ -63,6 +66,8 @@ public class If_touch_then_win : MonoBehaviour
         Time.timeScale = 0f;
         GameWon = true;
     }
+
+    
 
     IEnumerator MazeGenerate()
     {

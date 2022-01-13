@@ -9,6 +9,7 @@ public class Pause : MonoBehaviour
     public GameObject pauseMenu;
    
 
+
     void Start()
     {
         GamePaused = false;
@@ -62,5 +63,10 @@ public class Pause : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Quitting game....");
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
