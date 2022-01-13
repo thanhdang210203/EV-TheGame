@@ -19,7 +19,7 @@ public class Button_Click: MonoBehaviour
     public void selectStart()
     {
         Debug.Log("Loading Level");
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("1");
     }
     public void selectLevel()
     {
@@ -35,23 +35,23 @@ public class Button_Click: MonoBehaviour
     public void selectLevel1()
     {
         Debug.Log("Loading Level");
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("1");
         DontDestroyOnLoad(opener);
     }
     public void selectLevel2()
     {
         Debug.Log("Loading Level");
-        SceneManager.LoadScene("Level 2");
+        SceneManager.LoadScene("2");
     }
     public void selectLevel3()
     {
         Debug.Log("Loading Level");
-        SceneManager.LoadScene("Level 3");
+        SceneManager.LoadScene("3");
     }
     public void selectLevel4()
     {
         Debug.Log("Loading Level");
-        SceneManager.LoadScene("Level 4");
+        SceneManager.LoadScene("4");
     }
     public void selectLevelSecret()
     {

@@ -12,16 +12,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Secret Level.unity
     guid: ea372074649166649ba1dc3a858208e6
   - enabled: 1
-    path: Assets/Scenes/Level 1.unity
+    path: Assets/Scenes/1.unity
     guid: e9b7db9478e9f0d45b25a3fceb857f30
   - enabled: 1
-    path: Assets/Scenes/Level 2.unity
+    path: Assets/Scenes/2.unity
     guid: 08b42adcfb952484e812f4e4d0021a17
   - enabled: 1
-    path: Assets/Scenes/Level 3.unity
+    path: Assets/Scenes/3.unity
     guid: a9445082af20b634f90ca79e21079dd0
   - enabled: 1
-    path: Assets/Scenes/Level 4.unity
+    path: Assets/Scenes/4.unity
     guid: c65d604e438bdc642ae13d5d9c5a0bcf
   - enabled: 1
     path: Assets/Scenes/Select Level.unity

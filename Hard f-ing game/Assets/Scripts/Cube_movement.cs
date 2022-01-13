@@ -21,7 +21,7 @@ public class Cube_movement : MonoBehaviour
     public bool AbleToJump = false;
     public float turnspeed = 100.0f;
     public float movespeed = 4.0f;
-   
+    
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);

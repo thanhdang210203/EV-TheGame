@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 public class If_touch_then_win : MonoBehaviour
 {
+    public static bool GameWon = false;
     public AudioClip Start;
     public AudioClip Win;
     public AudioClip Noti;
@@ -15,6 +16,7 @@ public class If_touch_then_win : MonoBehaviour
     private Animation Float_Noti;
     private bool playOnce = true;
     [SerializeField] private GameObject Maze;
+    public GameObject WinMenu;
     void Update()
     {
         Float_Noti = gameObject.GetComponent<Animation>();
@@ -33,7 +35,7 @@ public class If_touch_then_win : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(Win, new Vector3(0, 0, 0));
             Debug.Log("You have won!");
-            SceneManager.LoadScene("Win_Screen");
+            WinPop();
             
         }
 
@@ -55,10 +57,19 @@ public class If_touch_then_win : MonoBehaviour
         }
     }
 
+    void WinPop()
+    {
+        WinMenu.SetActive(true);
+        Time.timeScale = 0f;
+        GameWon = true;
+    }
+
     IEnumerator MazeGenerate()
     {
         yield return new WaitForSeconds(1.0f);
         GameObject prefab = Instantiate(Maze, new Vector3(7.273451f, -256.2433f, 88.75381f), Quaternion.identity);
         AudioSource.PlayClipAtPoint(Pop, new Vector3(0, 0, 0));
     }
+
+
 }
