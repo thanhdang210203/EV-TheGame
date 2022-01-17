@@ -714,6 +714,7 @@ MonoBehaviour:
   Pop: {fileID: 0}
   FloatingNoti: {fileID: 262165211983917253, guid: 6900a39fc03306441b590b0fe57bdf49, type: 3}
   Maze: {fileID: 0}
+  WinMenu: {fileID: 0}
 --- !u!1001 &1097400433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -823,6 +824,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1753472263}
+    - target: {fileID: 8800542135697012245, guid: 9ff48475542bfde41aba16cc827a3979, type: 3}
+      propertyPath: JumpTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8800542135697012245, guid: 9ff48475542bfde41aba16cc827a3979, type: 3}
       propertyPath: AbleToJump
       value: 1
@@ -985,6 +990,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 466726279}
+    - target: {fileID: 7802180831378324400, guid: d9c734ad6fda18547920b95c974fa240, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 466726279}
+    - target: {fileID: 7802180831378324400, guid: d9c734ad6fda18547920b95c974fa240, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9c734ad6fda18547920b95c974fa240, type: 3}
 --- !u!1 &1212265677 stripped
@@ -1010,6 +1023,7 @@ MonoBehaviour:
   Pop: {fileID: 0}
   FloatingNoti: {fileID: 262165211983917253, guid: 6900a39fc03306441b590b0fe57bdf49, type: 3}
   Maze: {fileID: 0}
+  WinMenu: {fileID: 0}
 --- !u!1 &1310601481 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2988831232497865719, guid: 9d1020794c85b2243824fe359e7bcfab, type: 3}
@@ -1038,6 +1052,7 @@ MonoBehaviour:
   Pop: {fileID: 8300000, guid: c9695bb02ea930a4eaf12ed6d005f0ba, type: 3}
   FloatingNoti: {fileID: 262165211983917253, guid: 6900a39fc03306441b590b0fe57bdf49, type: 3}
   Maze: {fileID: 3905091208544916819, guid: 57471b5d429a0ac4c93c166aedd5fcbe, type: 3}
+  WinMenu: {fileID: 0}
 --- !u!114 &1310601489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1390,6 +1405,7 @@ MonoBehaviour:
   Pop: {fileID: 0}
   FloatingNoti: {fileID: 262165211983917253, guid: 6900a39fc03306441b590b0fe57bdf49, type: 3}
   Maze: {fileID: 0}
+  WinMenu: {fileID: 0}
 --- !u!1001 &1703498621
 PrefabInstance:
   m_ObjectHideFlags: 0
