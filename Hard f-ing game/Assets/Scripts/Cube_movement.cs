@@ -21,6 +21,9 @@ public class Cube_movement : MonoBehaviour
     public bool AbleToJump = false;
     public float turnspeed = 100.0f;
     public float movespeed = 4.0f;
+    public bool isJumping;
+    private float JumpCounter;
+    public float JumpTime;
     
     void Update()
     {
@@ -63,8 +66,26 @@ public class Cube_movement : MonoBehaviour
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
                 velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
+                isJumping = false;
+                JumpCounter = JumpTime;
 
             }
+            JumpHigher();
         }
+        void JumpHigher()
+        {
+        if (Input.GetKey(KeyCode.Space) && isJumping == true)
+            {
+                if (JumpCounter > 0)
+                {
+                    velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
+                    JumpCounter -= Time.deltaTime;
+                }
+                else
+                {
+                    isJumping = false;
+                }                
+            }
+        }    
     }
 }

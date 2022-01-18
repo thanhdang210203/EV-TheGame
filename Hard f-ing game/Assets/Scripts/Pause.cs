@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,15 +5,14 @@ public class Pause : MonoBehaviour
 {
     public static bool GamePaused = false;
     public GameObject pauseMenu;
-   
 
-
-    void Start()
+    private void Start()
     {
         GamePaused = false;
+        pauseMenu.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -30,20 +27,19 @@ public class Pause : MonoBehaviour
         }
     }
 
-    void Resume()
+    private void Resume()
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         GamePaused = false;
     }
 
-    void StopGame()
+    private void StopGame()
     {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         GamePaused = true;
     }
-
 
     public void LoadMenu()
     {
@@ -65,8 +61,9 @@ public class Pause : MonoBehaviour
         Debug.Log("Quitting game....");
     }
 
-    public void NextLevel()
+    public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        pauseMenu.SetActive(false);
     }
 }
