@@ -12,6 +12,7 @@ TagManager:
   - Obstical
   - Object
   - Middle_line
+  - maze
   layers:
   - Default
   - TransparentFX

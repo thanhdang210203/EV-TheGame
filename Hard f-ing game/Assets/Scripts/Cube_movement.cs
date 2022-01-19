@@ -21,10 +21,11 @@ public class Cube_movement : MonoBehaviour
     public bool AbleToJump = false;
     public float turnspeed = 100.0f;
     public float movespeed = 4.0f;
-    public bool isJumping;
-    private float JumpCounter;
-    public float JumpTime;
-    
+    public bool isJumping;       //a bool to enable hold jumping
+    private float JumpCounter;  //after player passed lv1, hold jump will be availabel in lv2,
+    public float JumpTime;     //but perspective is kind of 2d so the platform is easier to navigate around.
+
+   
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);

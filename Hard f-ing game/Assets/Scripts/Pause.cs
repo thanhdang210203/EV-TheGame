@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -62,8 +63,18 @@ public class Pause : MonoBehaviour
     }
 
     public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    {   
         pauseMenu.SetActive(false);
+        Debug.Log("smth");
+        GamePaused = false;
+        Time.timeScale = 1f;
+        StartCoroutine (Reload());
+        
+    }
+    IEnumerator Reload()
+    {
+        yield return new WaitForSeconds(1);
+        Resources.UnloadUnusedAssets();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
