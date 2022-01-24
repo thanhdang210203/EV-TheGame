@@ -6,11 +6,13 @@ public class Pause : MonoBehaviour
 {
     public static bool GamePaused = false;
     public GameObject pauseMenu;
+    
 
     private void Start()
     {
         GamePaused = false;
         pauseMenu.SetActive(false);
+       
     }
 
     private void Update()
@@ -65,11 +67,16 @@ public class Pause : MonoBehaviour
     public void RestartGame()
     {   
         pauseMenu.SetActive(false);
-        Debug.Log("smth");
+        Debug.Log("Game restrating...");
         GamePaused = false;
         Time.timeScale = 1f;
         StartCoroutine (Reload());
         
+    }
+    public void NextLevel()
+    {
+        Debug.Log("Next Level loading...");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     IEnumerator Reload()
     {

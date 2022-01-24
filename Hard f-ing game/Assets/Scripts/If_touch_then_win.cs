@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class If_touch_then_win : MonoBehaviour
 {
     public static bool GameWon = false;
-    public AudioClip Start;
+    public AudioClip StartGame;
     public AudioClip Win;
     public AudioClip Noti;
     public AudioClip Pop;
@@ -20,6 +20,12 @@ public class If_touch_then_win : MonoBehaviour
     public Button Next;
     public Button Menu;
     public Button quit;
+
+    public void Start()
+    {
+        GameWon = false;
+        WinMenu.SetActive(false);
+    }
     void Update()
     {
         Float_Noti = gameObject.GetComponent<Animation>();
@@ -29,7 +35,7 @@ public class If_touch_then_win : MonoBehaviour
         if (ObjectCollidedWith.collider.tag == "Line" && playOnce == true)
         {
 
-            AudioSource.PlayClipAtPoint(Start, new Vector3(0, 0, 0));
+            AudioSource.PlayClipAtPoint(StartGame, new Vector3(0, 0, 0));
             Debug.Log("Let's start!");
             playOnce = false;
         }
