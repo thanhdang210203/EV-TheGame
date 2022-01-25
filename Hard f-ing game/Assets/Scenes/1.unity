@@ -684,6 +684,14 @@ PrefabInstance:
       propertyPath: WinMenu
       value: 
       objectReference: {fileID: 1965678171}
+    - target: {fileID: 2532471698585152033, guid: 9ff48475542bfde41aba16cc827a3979, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 808e5bc0f76962c459361fe60e2d29ec, type: 2}
+    - target: {fileID: 6097886387096776894, guid: 9ff48475542bfde41aba16cc827a3979, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300052, guid: d05d496cb4f43c14e80630addd23652e, type: 3}
     - target: {fileID: 8800542135697012245, guid: 9ff48475542bfde41aba16cc827a3979, type: 3}
       propertyPath: cam
       value: 

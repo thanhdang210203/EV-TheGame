@@ -56,6 +56,11 @@ public class If_touch_then_win : MonoBehaviour
             StartCoroutine(MazeGenerate());
             playOnce = true;
         }
+        
+        else if(ObjectCollidedWith.collider.tag == "Obsitcal")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
     void ShowNoti(string text)
     {

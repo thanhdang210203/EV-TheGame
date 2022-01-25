@@ -24,7 +24,8 @@ public class Cube_movement : MonoBehaviour
     public bool isJumping;       //a bool to enable hold jumping
     private float JumpCounter;  //after player passed lv1, hold jump will be availabel in lv2,
     public float JumpTime;     //but perspective is kind of 2d so the platform is easier to navigate around.
-
+    public bool Thrid_cam = true;
+    public bool TwoD_Cam = false;
    
     void Update()
     {
@@ -40,7 +41,9 @@ public class Cube_movement : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        if(direction.magnitude >= 0.1f)
+        if (Thrid_cam)
+        {
+            if(direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
@@ -52,12 +55,18 @@ public class Cube_movement : MonoBehaviour
             
         }
 
-        
-
+        }
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        if(AbleToJump)
+        if (TwoD_Cam)
+        {
+            transform.Translate(0f, 0f, movespeed * Input.GetAxis("Horizontal") * Time.deltaTime);
+        }
+
+        
+
+        if (AbleToJump)
         {
             PlayerJump();
         }
@@ -69,6 +78,7 @@ public class Cube_movement : MonoBehaviour
                 velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
                 isJumping = false;
                 JumpCounter = JumpTime;
+                Debug.Log("Jumping");
 
             }
             JumpHigher();
