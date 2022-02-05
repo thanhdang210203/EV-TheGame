@@ -12,14 +12,18 @@ public class If_touch_then_win : MonoBehaviour
     public AudioClip Noti;
     public AudioClip Pop;
     private string str = "PASS THROUGH THE MAZE";
+    private string strr = "LAND ON TOP OF THE PLATFORM!!!";
     [SerializeField] private GameObject FloatingNoti;
+    [SerializeField] private GameObject Maze;
     private Animation Float_Noti;
     private bool playOnce = true;
-    [SerializeField] private GameObject Maze;
     public GameObject WinMenu;
+    public GameObject Instruct;
+    public GameObject DeadText;
     public Button Next;
     public Button Menu;
     public Button quit;
+    private bool GameRestarted = false;
 
     public void Start()
     {
@@ -57,9 +61,16 @@ public class If_touch_then_win : MonoBehaviour
             playOnce = true;
         }
         
-        else if(ObjectCollidedWith.collider.tag == "Obsitcal")
+        else if(ObjectCollidedWith.collider.tag == "Ground_Dead")
         {
+            Debug.Log("Dead ground touched, restarting level.....");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameRestarted = true;
+            if (GameRestarted)
+            {
+                Instruct.SetActive(false);
+                DeadText.SetActive(true);
+            }
         }
     }
     void ShowNoti(string text)
@@ -77,9 +88,6 @@ public class If_touch_then_win : MonoBehaviour
         Time.timeScale = 0f;
         GameWon = true;
     }
-
-    
-
     IEnumerator MazeGenerate()
     {
         yield return new WaitForSeconds(1.0f);
@@ -87,5 +95,9 @@ public class If_touch_then_win : MonoBehaviour
         AudioSource.PlayClipAtPoint(Pop, new Vector3(0, 0, 0));
     }
 
+    IEnumerator DestroyNot()
+    {
+        yield return new WaitForSeconds(4.0f);
+    }
 
 }

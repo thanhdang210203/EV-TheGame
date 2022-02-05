@@ -13,6 +13,8 @@ TagManager:
   - Object
   - Middle_line
   - maze
+  - Ground_Dead
+  - cam change line
   layers:
   - Default
   - TransparentFX
