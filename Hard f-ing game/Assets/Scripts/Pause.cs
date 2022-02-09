@@ -6,13 +6,16 @@ public class Pause : MonoBehaviour
 {
     public static bool GamePaused = false;
     public GameObject pauseMenu;
-    
+    public GameObject WinMenu;
+    public static bool GameWon = false;
+
 
     private void Start()
     {
         GamePaused = false;
+        GameWon = false;
         pauseMenu.SetActive(false);
-       
+        WinMenu.SetActive(false);
     }
 
     private void Update()
@@ -77,6 +80,7 @@ public class Pause : MonoBehaviour
     {
         Debug.Log("Next Level loading...");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1f;
     }
     IEnumerator Reload()
     {

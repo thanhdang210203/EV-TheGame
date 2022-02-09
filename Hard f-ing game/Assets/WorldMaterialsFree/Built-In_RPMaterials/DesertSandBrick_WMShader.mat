@@ -94,16 +94,16 @@ Material:
     - _GlossyReflections: 1
     - _HeightDisplacement: 0.02
     - _Metallic: 0
-    - _MetallicStrength: 0
+    - _MetallicStrength: 0.272
     - _Mode: 0
-    - _NormalScale: 1
+    - _NormalScale: 0.71
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessStrength: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Tile: 1
+    - _Tile: 7.14
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0

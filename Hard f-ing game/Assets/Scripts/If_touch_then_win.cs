@@ -27,7 +27,6 @@ public class If_touch_then_win : MonoBehaviour
     public void Start()
     {
         GameWon = false;
-        WinMenu.SetActive(false);
         GameRestarted = false;
         DeadText.SetActive(false);
     }
@@ -93,7 +92,7 @@ public class If_touch_then_win : MonoBehaviour
     IEnumerator MazeGenerate()
     {
         yield return new WaitForSeconds(1.0f);
-        GameObject prefab = Instantiate(Maze, new Vector3(6.95f, -256.2433f, 88.75381f), Quaternion.identity);
+        GameObject prefab = Instantiate(Maze, new Vector3(6.95f, -258.48f, 88.75381f), Quaternion.identity);
         AudioSource.PlayClipAtPoint(Pop, new Vector3(0, 0, 0));
     }
 

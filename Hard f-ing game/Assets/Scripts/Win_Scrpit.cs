@@ -31,4 +31,9 @@ public class Win_Scrpit : MonoBehaviour
         Application.Quit();
         Debug.Log("Quiting game....");
     }
+
+    public void SelectRestart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
