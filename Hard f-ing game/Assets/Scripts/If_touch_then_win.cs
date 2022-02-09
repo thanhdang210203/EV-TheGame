@@ -12,7 +12,6 @@ public class If_touch_then_win : MonoBehaviour
     public AudioClip Noti;
     public AudioClip Pop;
     private string str = "PASS THROUGH THE MAZE";
-    private string strr = "LAND ON TOP OF THE PLATFORM!!!";
     [SerializeField] private GameObject FloatingNoti;
     [SerializeField] private GameObject Maze;
     private Animation Float_Noti;
@@ -23,12 +22,14 @@ public class If_touch_then_win : MonoBehaviour
     public Button Next;
     public Button Menu;
     public Button quit;
-    private bool GameRestarted = false;
+    private bool GameRestarted;
 
     public void Start()
     {
         GameWon = false;
         WinMenu.SetActive(false);
+        GameRestarted = false;
+        DeadText.SetActive(false);
     }
     void Update()
     {
@@ -42,6 +43,7 @@ public class If_touch_then_win : MonoBehaviour
             AudioSource.PlayClipAtPoint(StartGame, new Vector3(0, 0, 0));
             Debug.Log("Let's start!");
             playOnce = false;
+           
         }
 
         else if (ObjectCollidedWith.collider.tag == "WinBlock")
