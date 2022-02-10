@@ -78,7 +78,7 @@ public class If_touch_then_win : MonoBehaviour
     {
         if (FloatingNoti)
         {
-            GameObject prefab = Instantiate(FloatingNoti, new Vector3(22.5f, 17f, 36.4f), Quaternion.identity); 
+            GameObject prefab = Instantiate(FloatingNoti, new Vector3(20.4f, 41.11f, 34f), Quaternion.identity); 
             prefab.GetComponentInChildren<TextMesh>().text = text;
         }
     }
