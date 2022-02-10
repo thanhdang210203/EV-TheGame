@@ -17,7 +17,7 @@ public class Cube_movement : MonoBehaviour
     public float groundDistance = 0.2f;
     private Vector3 velocity;
     private bool isGrounded;
-    private Rigidbody player;
+    public Rigidbody player;
     public bool AbleToJump = false;
     public float turnspeed = 100.0f;
     public float movespeed = 4.0f;
@@ -76,6 +76,7 @@ public class Cube_movement : MonoBehaviour
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
                 velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
+                player.AddRelativeForce(Vector3.up * jump);
                 isJumping = false;
                 JumpCounter = JumpTime;
                 Debug.Log("Jumping");

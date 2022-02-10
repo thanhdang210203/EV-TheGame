@@ -15,6 +15,7 @@ TagManager:
   - maze
   - Ground_Dead
   - cam change line
+  - Next lev block
   layers:
   - Default
   - TransparentFX

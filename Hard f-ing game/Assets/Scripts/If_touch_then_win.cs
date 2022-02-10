@@ -66,19 +66,28 @@ public class If_touch_then_win : MonoBehaviour
         {
             Debug.Log("Dead ground touched, restarting level.....");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            GameRestarted = true;
-            if (GameRestarted)
+           
+            
+           GameRestarted = true;
+                            if (GameRestarted)
             {
                 Instruct.SetActive(false);
                 DeadText.SetActive(true);
             }
+             
+            
+        }
+        else if (ObjectCollidedWith.collider.tag == "Next lev block")
+        {
+            Debug.Log("Loading lv2 extend");
+            SceneManager.LoadScene("2(Extended)");
         }
     }
     void ShowNoti(string text)
     {
         if (FloatingNoti)
         {
-            GameObject prefab = Instantiate(FloatingNoti, new Vector3(20.4f, 41.11f, 34f), Quaternion.identity); 
+            GameObject prefab = Instantiate(FloatingNoti, new Vector3(0f, -8.8f, 34f), Quaternion.identity); 
             prefab.GetComponentInChildren<TextMesh>().text = text;
         }
     }
