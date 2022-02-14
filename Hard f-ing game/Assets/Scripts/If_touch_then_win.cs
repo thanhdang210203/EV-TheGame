@@ -82,6 +82,8 @@ public class If_touch_then_win : MonoBehaviour
             Debug.Log("Loading lv2 extend");
             SceneManager.LoadScene("2(Extended)");
         }
+
+        
     }
     void ShowNoti(string text)
     {

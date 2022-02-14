@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UIElements;
 public class Cube_movement : MonoBehaviour
 {
 
@@ -11,12 +11,17 @@ public class Cube_movement : MonoBehaviour
     public LayerMask groundMask;
     public float speed = 5f;
     public float jump = 2f;
+    public float dash = 4f;
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
     public float gravity = -9.81f;
     public float groundDistance = 0.2f;
     private Vector3 velocity;
+    public Vector3 moveDir;
     private bool isGrounded;
+    public bool Dashable = false;
+    private bool Able_To_Dash = true;
+    private bool Dash_Time;
     public Rigidbody player;
     public bool AbleToJump = false;
     public float turnspeed = 100.0f;
@@ -26,7 +31,15 @@ public class Cube_movement : MonoBehaviour
     public float JumpTime;     //but perspective is kind of 2d so the platform is easier to navigate around.
     public bool Thrid_cam = true;
     public bool TwoD_Cam = false;
-   
+    public AudioClip Dashing_Sound;
+    public float bounce_force;
+    private float drag_force = 0.5f;
+
+
+    private void Start()
+    {
+        player = GetComponent<Rigidbody>();
+    }
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -34,7 +47,6 @@ public class Cube_movement : MonoBehaviour
         if(isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
-
         }
 
         float horizontal = Input.GetAxis("Horizontal");
@@ -48,7 +60,7 @@ public class Cube_movement : MonoBehaviour
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir * speed * Time.deltaTime);
             transform.Rotate(Vector3.up * turnspeed * Input.GetAxis("Horizontal") * Time.deltaTime);
             transform.Translate(0f, 0f, movespeed * Input.GetAxis("Vertical") * Time.deltaTime);
@@ -75,8 +87,8 @@ public class Cube_movement : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
+                //player.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
                 velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
-                player.AddRelativeForce(Vector3.up * jump);
                 isJumping = false;
                 JumpCounter = JumpTime;
                 Debug.Log("Jumping");
@@ -98,6 +110,38 @@ public class Cube_movement : MonoBehaviour
                     isJumping = false;
                 }                
             }
-        }    
+        }
+
+
+
+
+        //Dash mechanic
+        if (Input.GetKeyDown(KeyCode.E) && Dashable == true && Able_To_Dash == true)
+        {
+            StartCoroutine(Dashhhh());
+            StartCoroutine(Latecall_Dash());
+            Debug.Log("dashhhhhhhhh");
+        }
+
+        IEnumerator Latecall_Dash()
+        {
+            Able_To_Dash = false;
+            yield return new WaitForSeconds(Dashing_Sound.length);
+            Able_To_Dash = true;
+        }
+
+        IEnumerator Dashhhh()
+        {
+            AudioSource.PlayClipAtPoint(Dashing_Sound, new Vector3(0, 0, 0));
+            velocity.z = Mathf.Sqrt(dash * -2.0f * gravity);
+            if (velocity.z > 0)
+            {
+                velocity.z = drag_force * Time.deltaTime;
+            }
+
+            yield return null;
+        }
     }
+
+
 }
