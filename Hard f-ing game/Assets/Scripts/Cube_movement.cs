@@ -9,9 +9,9 @@ public class Cube_movement : MonoBehaviour
     public CharacterController controller;
     public Transform groundCheck;
     public LayerMask groundMask;
-    public float speed = 5f;
-    public float jump = 2f;
-    public float dash = 4f;
+    public float speed = 5.0f;
+    public float jump = 2.0f;
+    public float dash = 4.0f;
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
     public float gravity = -9.81f;
@@ -33,7 +33,7 @@ public class Cube_movement : MonoBehaviour
     public bool TwoD_Cam = false;
     public AudioClip Dashing_Sound;
     public float bounce_force;
-    private float drag_force = 0.5f;
+    private float drag_force = -5.5f;
 
 
     private void Start()
@@ -44,9 +44,10 @@ public class Cube_movement : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if(isGrounded && velocity.y < 0)
+        if(isGrounded && velocity.y < 0 && velocity.z < 0)
         {
             velocity.y = -2f;
+            velocity.z = 0f;
         }
 
         float horizontal = Input.GetAxis("Horizontal");
@@ -87,37 +88,38 @@ public class Cube_movement : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
-                //player.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+                //player.AddForce(transform.up * jump, ForceMode.Impulse);
                 velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
                 isJumping = false;
                 JumpCounter = JumpTime;
                 Debug.Log("Jumping");
 
             }
-            JumpHigher();
+            //JumpHigher();
         }
-        void JumpHigher()
-        {
-        if (Input.GetKey(KeyCode.Space) && isJumping == true)
-            {
-                if (JumpCounter > 0)
-                {
-                    velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
-                    JumpCounter -= Time.deltaTime;
-                }
-                else
-                {
-                    isJumping = false;
-                }                
-            }
-        }
+        //void JumpHigher()
+        //{
+        //if (Input.GetKey(KeyCode.Space) && isJumping == true)
+        //    {
+        //        if (JumpCounter > 0)
+        //        {
+        //            velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
+        //            JumpCounter -= Time.deltaTime;
+        //        }
+        //        else
+        //        {
+        //            isJumping = false;
+        //        }                
+        //    }
+        //}
 
 
 
 
         //Dash mechanic
         if (Input.GetKeyDown(KeyCode.E) && Dashable == true && Able_To_Dash == true)
-        {
+        { 
+
             StartCoroutine(Dashhhh());
             StartCoroutine(Latecall_Dash());
             Debug.Log("dashhhhhhhhh");
@@ -125,18 +127,25 @@ public class Cube_movement : MonoBehaviour
 
         IEnumerator Latecall_Dash()
         {
-            Able_To_Dash = false;
+            Dashable = false;
             yield return new WaitForSeconds(Dashing_Sound.length);
-            Able_To_Dash = true;
+            velocity.z = 0f;
+            Dashable = true;
         }
 
         IEnumerator Dashhhh()
         {
             AudioSource.PlayClipAtPoint(Dashing_Sound, new Vector3(0, 0, 0));
-            velocity.z = Mathf.Sqrt(dash * -2.0f * gravity);
+            velocity.z = Mathf.Sqrt(dash * -2.0f * drag_force);
+            //player.AddForce(transform.forward * dash, ForceMode.Force);
             if (velocity.z > 0)
             {
-                velocity.z = drag_force * Time.deltaTime;
+                velocity.z += drag_force * Time.deltaTime;
+            }
+            else if (velocity.z < 0)
+            {
+                velocity.z = 0f;
+                Dashable = true;
             }
 
             yield return null;

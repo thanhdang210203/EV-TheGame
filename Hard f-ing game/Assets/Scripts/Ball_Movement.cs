@@ -18,6 +18,7 @@ public class Ball_Movement : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded;
     private Rigidbody player;
+    public bool TwoD_Cam = false;
     public bool AbleToJump = false;
     public float turnspeed = 100.0f;
     public float movespeed = 4.0f;
@@ -25,19 +26,24 @@ public class Ball_Movement : MonoBehaviour
     private float JumpCounter;  //after player passed lv1, hold jump will be availabel in lv2,
     public float JumpTime;     //but perspective is kind of 2d so the platform is easier to navigate around.
 
+
+    private void Start()
+    {
+        player.GetComponent<Rigidbody>();
+    }
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
 
-        }
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
         velocity.y += gravity * Time.deltaTime;
-        transform.Translate(0f, 0f, movespeed * Input.GetAxis("Horizontal") * Time.deltaTime);
+        controller.Move(velocity * Time.deltaTime);
 
-        
+        transform.Translate(0f, 0f, movespeed * Input.GetAxis("Horizontal") * Time.deltaTime);
 
         if (AbleToJump)
         {
@@ -48,28 +54,28 @@ public class Ball_Movement : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
-                velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
+                player.AddForce(transform.up * jump, ForceMode.Impulse);
                 isJumping = false;
                 JumpCounter = JumpTime;
                 Debug.Log("Jumping");
 
             }
-            JumpHigher();
+        //    JumpHigher();
         }
-        void JumpHigher()
-        {
-            if (Input.GetKey(KeyCode.Space) && isJumping == true)
-            {
-                if (JumpCounter > 0)
-                {
-                    velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
-                    JumpCounter -= Time.deltaTime;
-                }
-                else
-                {
-                    isJumping = false;
-                }
-            }
-        }
+        //void JumpHigher()
+        //{
+        //    if (Input.GetKey(KeyCode.Space) && isJumping == true)
+        //    {
+        //        if (JumpCounter > 0)
+        //        {
+        //            velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
+        //            JumpCounter -= Time.deltaTime;
+        //        }
+        //        else
+        //        {
+        //            isJumping = false;
+        //        }
+        //    }
+        //}
     }
 }
