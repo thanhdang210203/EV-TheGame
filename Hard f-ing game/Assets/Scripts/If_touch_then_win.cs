@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class If_touch_then_win : MonoBehaviour
 {   
   
-    public static bool GameWon = false;
+    
     public AudioClip StartGame;
     public AudioClip Win;
     public AudioClip Noti;
@@ -27,7 +27,7 @@ public class If_touch_then_win : MonoBehaviour
    
     public void Start()
     {
-        GameWon = false;
+        
         GameRestarted = false;
         DeadText.SetActive(false);
     }
@@ -49,9 +49,12 @@ public class If_touch_then_win : MonoBehaviour
         else if (ObjectCollidedWith.collider.tag == "WinBlock")
         {
             AudioSource.PlayClipAtPoint(Win, new Vector3(0, 0, 0));
+
             Debug.Log("You have won!");
-            WinPop();
-            
+            WinMenu.SetActive(true);
+            Time.timeScale = 0f;
+           
+
         }
 
         else if (ObjectCollidedWith.collider.tag == "Middle_line" && playOnce == false)
@@ -70,7 +73,7 @@ public class If_touch_then_win : MonoBehaviour
            
             
            GameRestarted = true;
-                            if (GameRestarted)
+            if (GameRestarted)
             {
                 Instruct.SetActive(false);
                 DeadText.SetActive(true);
@@ -98,12 +101,7 @@ public class If_touch_then_win : MonoBehaviour
         }
     }
 
-    void WinPop()
-    {
-        WinMenu.SetActive(true);
-        Time.timeScale = 0f;
-        GameWon = true;
-    }
+   
     IEnumerator MazeGenerate()
     {
         yield return new WaitForSeconds(1.0f);

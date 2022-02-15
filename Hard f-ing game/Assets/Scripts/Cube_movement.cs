@@ -12,6 +12,7 @@ public class Cube_movement : MonoBehaviour
     public float speed = 5.0f;
     public float jump = 2.0f;
     public float dash = 4.0f;
+    private float dash_revers = -4.0f;
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
     public float gravity = -9.81f;
@@ -127,11 +128,17 @@ public class Cube_movement : MonoBehaviour
             Current_Dash_Timer = Dash_Counter;
             if(isDashing == true)
             {
-            StartCoroutine(Dashhhh());
+            StartCoroutine(DashA());
             StartCoroutine(Latecall_Dash());
             }
             
             Debug.Log("dashhhhhhhhh");
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q) && Dashable == true && Able_To_Dash == true && horizontal != 0 && !isGrounded)
+        {
+            StartCoroutine(DashD());
+            StartCoroutine(Latecall_Dash());
         }
 
         if (isDashing)
@@ -151,7 +158,7 @@ public class Cube_movement : MonoBehaviour
             Dashable = true;
         }
 
-        IEnumerator Dashhhh()
+        IEnumerator DashA()
         {
             AudioSource.PlayClipAtPoint(Dashing_Sound, new Vector3(0, 0, 0));
             velocity.z = Mathf.Sqrt(dash * -2.0f * drag_force);
@@ -160,6 +167,24 @@ public class Cube_movement : MonoBehaviour
             {   
                 DashDirection = horizontal;
                 velocity.z += drag_force * Time.deltaTime;               
+            }
+            else if (velocity.z < 0)
+            {
+                velocity.z = 0f;
+                Dashable = true;
+            }
+
+            yield return null;
+        }
+        IEnumerator DashD()
+        {
+            AudioSource.PlayClipAtPoint(Dashing_Sound, new Vector3(0, 0, 0));
+            velocity.z = Mathf.Sqrt(dash_revers * 2.0f * drag_force);
+            //player.AddForce(transform.forward * dash, ForceMode.Force);
+            if (velocity.z > 0)
+            {
+                DashDirection = horizontal;
+                velocity.z += drag_force * Time.deltaTime;
             }
             else if (velocity.z < 0)
             {
