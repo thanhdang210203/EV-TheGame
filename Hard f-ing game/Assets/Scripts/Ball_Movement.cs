@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball_Movement : MonoBehaviour
 {
-
     public Transform cam;
     public CharacterController controller;
     public Transform groundCheck;
@@ -12,7 +9,7 @@ public class Ball_Movement : MonoBehaviour
     public float speed = 5f;
     public float jump = 2f;
     public float turnSmoothTime = 0.1f;
-    float turnSmoothVelocity;
+    private float turnSmoothVelocity;
     public float gravity = -9.81f;
     public float groundDistance = 0.2f;
     private Vector3 velocity;
@@ -26,15 +23,14 @@ public class Ball_Movement : MonoBehaviour
     private float JumpCounter;  //after player passed lv1, hold jump will be availabel in lv2,
     public float JumpTime;     //but perspective is kind of 2d so the platform is easier to navigate around.
 
-
     private void Start()
     {
         player.GetComponent<Rigidbody>();
     }
-    void Update()
+
+    private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -58,9 +54,8 @@ public class Ball_Movement : MonoBehaviour
                 isJumping = false;
                 JumpCounter = JumpTime;
                 Debug.Log("Jumping");
-
             }
-        //    JumpHigher();
+            //    JumpHigher();
         }
         //void JumpHigher()
         //{

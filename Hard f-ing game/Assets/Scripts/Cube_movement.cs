@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 public class Cube_movement : MonoBehaviour
 {
-
     public Transform cam;
     public CharacterController controller;
     public Transform groundCheck;
@@ -14,7 +12,7 @@ public class Cube_movement : MonoBehaviour
     public float dash = 4.0f;
     private float dash_revers = -4.0f;
     public float turnSmoothTime = 0.1f;
-    float turnSmoothVelocity;
+    private float turnSmoothVelocity;
     public float gravity = -9.81f;
     public float groundDistance = 0.2f;
     private Vector3 velocity;
@@ -37,19 +35,19 @@ public class Cube_movement : MonoBehaviour
     public AudioClip Dashing_Sound;
     public float bounce_force;
     private float drag_force = -5.5f;
-    float DashDirection;
+    private float DashDirection;
     public float bump_force = 0.3f;
-
 
     private void Start()
     {
         player = GetComponent<Rigidbody>();
     }
-    void Update()
+
+    private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if(isGrounded && velocity.y < 0 && velocity.z < 0)
+        if (isGrounded && velocity.y < 0 && velocity.z < 0)
         {
             velocity.y = -1f;
             velocity.z = 0f;
@@ -61,18 +59,16 @@ public class Cube_movement : MonoBehaviour
 
         if (Thrid_cam)
         {
-            if(direction.magnitude >= 0.1f)
-        {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-            moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            controller.Move(moveDir * speed * Time.deltaTime);
-            transform.Rotate(Vector3.up * turnspeed * Input.GetAxis("Horizontal") * Time.deltaTime);
-            transform.Translate(0f, 0f, movespeed * Input.GetAxis("Vertical") * Time.deltaTime);
-            
-        }
-
+            if (direction.magnitude >= 0.1f)
+            {
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+                moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                controller.Move(moveDir * speed * Time.deltaTime);
+                transform.Rotate(Vector3.up * turnspeed * Input.GetAxis("Horizontal") * Time.deltaTime);
+                transform.Translate(0f, 0f, movespeed * Input.GetAxis("Vertical") * Time.deltaTime);
+            }
         }
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
@@ -81,8 +77,6 @@ public class Cube_movement : MonoBehaviour
         {
             transform.Translate(0f, 0f, movespeed * Input.GetAxis("Horizontal") * Time.deltaTime);
         }
-
-        
 
         if (AbleToJump)
         {
@@ -98,7 +92,6 @@ public class Cube_movement : MonoBehaviour
                 isJumping = false;
                 JumpCounter = JumpTime;
                 Debug.Log("Jumping");
-
             }
             //JumpHigher();
         }
@@ -114,28 +107,25 @@ public class Cube_movement : MonoBehaviour
         //        else
         //        {
         //            isJumping = false;
-        //        }                
+        //        }
         //    }
         //}
-
-
-
 
         //Dash mechanic
         if (Input.GetKeyDown(KeyCode.E) && Dashable == true && Able_To_Dash == true && horizontal != 0 && !isGrounded)
         {
             isDashing = true;
             Current_Dash_Timer = Dash_Counter;
-            if(isDashing == true)
+            if (isDashing == true)
             {
-            StartCoroutine(DashA());
-            StartCoroutine(Latecall_Dash());
+                StartCoroutine(DashA());
+                StartCoroutine(Latecall_Dash());
             }
-            
+
             Debug.Log("dashhhhhhhhh");
         }
 
-        if(Input.GetKeyDown(KeyCode.Q) && Dashable == true && Able_To_Dash == true && horizontal != 0 && !isGrounded)
+        if (Input.GetKeyDown(KeyCode.Q) && Dashable == true && Able_To_Dash == true && horizontal != 0 && !isGrounded)
         {
             StartCoroutine(DashD());
             StartCoroutine(Latecall_Dash());
@@ -144,7 +134,7 @@ public class Cube_movement : MonoBehaviour
         if (isDashing)
         {
             Current_Dash_Timer -= Time.deltaTime;
-            if(Current_Dash_Timer <= 0)
+            if (Current_Dash_Timer <= 0)
             {
                 isDashing = false;
             }
@@ -164,9 +154,9 @@ public class Cube_movement : MonoBehaviour
             velocity.z = Mathf.Sqrt(dash * -2.0f * drag_force);
             //player.AddForce(transform.forward * dash, ForceMode.Force);
             if (velocity.z > 0)
-            {   
+            {
                 DashDirection = horizontal;
-                velocity.z += drag_force * Time.deltaTime;               
+                velocity.z += drag_force * Time.deltaTime;
             }
             else if (velocity.z < 0)
             {
@@ -196,15 +186,12 @@ public class Cube_movement : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision ObjectCollidedWith)
+    private void OnCollisionEnter(Collision ObjectCollidedWith)
     {
-        if(ObjectCollidedWith.collider.tag == "Upper Ceilling")
-        {   
+        if (ObjectCollidedWith.collider.tag == "Upper Ceilling")
+        {
             Debug.Log("ddddd");
-            velocity.y = Mathf.Sqrt(bump_force * 2.0f * gravity);  
+            velocity.y = Mathf.Sqrt(bump_force * 2.0f * gravity);
         }
-            
     }
-
-
 }

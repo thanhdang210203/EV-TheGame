@@ -1,24 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-
     public Transform[] views;
     public float transitionSpeed;
-    Transform currentView;
+    private Transform currentView;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
-
-
     }
 
-    void Update()
+    private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.E))
         {
             currentView = views[0];
@@ -43,13 +37,10 @@ public class CameraController : MonoBehaviour
         {
             currentView = views[4];
         }
-
     }
 
-
-    void LateUpdate()
+    private void LateUpdate()
     {
-
         //Lerp position
         transform.position = Vector3.Lerp(transform.position, currentView.position, Time.deltaTime * transitionSpeed);
 
@@ -59,6 +50,5 @@ public class CameraController : MonoBehaviour
          Mathf.LerpAngle(transform.rotation.eulerAngles.z, currentView.transform.rotation.eulerAngles.z, Time.deltaTime * transitionSpeed));
 
         transform.eulerAngles = currentAngle;
-
     }
 }

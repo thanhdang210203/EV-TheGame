@@ -9,7 +9,6 @@ public class Pause : MonoBehaviour
     public GameObject WinMenu;
     public static bool GameWon = false;
 
-
     private void Start()
     {
         GamePaused = false;
@@ -68,21 +67,22 @@ public class Pause : MonoBehaviour
     }
 
     public void RestartGame()
-    {   
+    {
         pauseMenu.SetActive(false);
         Debug.Log("Game restrating...");
         GamePaused = false;
         Time.timeScale = 1f;
-        StartCoroutine (Reload());
-        
+        StartCoroutine(Reload());
     }
+
     public void NextLevel()
     {
         Debug.Log("Next Level loading...");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1f;
     }
-    IEnumerator Reload()
+
+    private IEnumerator Reload()
     {
         yield return new WaitForSeconds(1);
         Resources.UnloadUnusedAssets();

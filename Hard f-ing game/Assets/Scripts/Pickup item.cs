@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Next_Level : MonoBehaviour
+public class Pickupitem : MonoBehaviour
 {
     // Start is called before the first frame update
     private void Start()

@@ -1,24 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Win_Scrpit : MonoBehaviour
 {
-    public Button Next;
-    public Button Menu;
-    public Button quit;
     private SceneManager currentScene;
 
-    void Start()
+    private void Start()
     {
-        
     }
+
     public void SelectNext()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    } 
+    }
 
     public void SelectMenu()
     {
