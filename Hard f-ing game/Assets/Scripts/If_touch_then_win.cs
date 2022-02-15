@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class If_touch_then_win : MonoBehaviour
-{
+{   
+  
     public static bool GameWon = false;
     public AudioClip StartGame;
     public AudioClip Win;
@@ -23,7 +24,7 @@ public class If_touch_then_win : MonoBehaviour
     public Button Menu;
     public Button quit;
     private bool GameRestarted;
-
+   
     public void Start()
     {
         GameWon = false;
@@ -83,7 +84,10 @@ public class If_touch_then_win : MonoBehaviour
             SceneManager.LoadScene("2(Extended)");
         }
 
-        
+       
+
+
+
     }
     void ShowNoti(string text)
     {

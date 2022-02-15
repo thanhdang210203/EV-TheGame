@@ -20,8 +20,10 @@ public class Cube_movement : MonoBehaviour
     public Vector3 moveDir;
     private bool isGrounded;
     public bool Dashable = false;
-    private bool Able_To_Dash = true;
-    private bool Dash_Time;
+    private bool isDashing;
+    private float Dash_Counter;
+    private float Current_Dash_Timer;
+    public bool Able_To_Dash;
     public Rigidbody player;
     public bool AbleToJump = false;
     public float turnspeed = 100.0f;
@@ -34,6 +36,8 @@ public class Cube_movement : MonoBehaviour
     public AudioClip Dashing_Sound;
     public float bounce_force;
     private float drag_force = -5.5f;
+    float DashDirection;
+    public float bump_force = 0.3f;
 
 
     private void Start()
@@ -46,7 +50,7 @@ public class Cube_movement : MonoBehaviour
 
         if(isGrounded && velocity.y < 0 && velocity.z < 0)
         {
-            velocity.y = -2f;
+            velocity.y = -1f;
             velocity.z = 0f;
         }
 
@@ -89,7 +93,7 @@ public class Cube_movement : MonoBehaviour
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
                 //player.AddForce(transform.up * jump, ForceMode.Impulse);
-                velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
+                velocity.y = Mathf.Sqrt(jump * -3.0f * gravity);
                 isJumping = false;
                 JumpCounter = JumpTime;
                 Debug.Log("Jumping");
@@ -117,12 +121,26 @@ public class Cube_movement : MonoBehaviour
 
 
         //Dash mechanic
-        if (Input.GetKeyDown(KeyCode.E) && Dashable == true && Able_To_Dash == true)
-        { 
-
+        if (Input.GetKeyDown(KeyCode.E) && Dashable == true && Able_To_Dash == true && horizontal != 0 && !isGrounded)
+        {
+            isDashing = true;
+            Current_Dash_Timer = Dash_Counter;
+            if(isDashing == true)
+            {
             StartCoroutine(Dashhhh());
             StartCoroutine(Latecall_Dash());
+            }
+            
             Debug.Log("dashhhhhhhhh");
+        }
+
+        if (isDashing)
+        {
+            Current_Dash_Timer -= Time.deltaTime;
+            if(Current_Dash_Timer <= 0)
+            {
+                isDashing = false;
+            }
         }
 
         IEnumerator Latecall_Dash()
@@ -139,8 +157,9 @@ public class Cube_movement : MonoBehaviour
             velocity.z = Mathf.Sqrt(dash * -2.0f * drag_force);
             //player.AddForce(transform.forward * dash, ForceMode.Force);
             if (velocity.z > 0)
-            {
-                velocity.z += drag_force * Time.deltaTime;
+            {   
+                DashDirection = horizontal;
+                velocity.z += drag_force * Time.deltaTime;               
             }
             else if (velocity.z < 0)
             {
@@ -150,6 +169,16 @@ public class Cube_movement : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    void OnCollisionEnter(Collision ObjectCollidedWith)
+    {
+        if(ObjectCollidedWith.collider.tag == "Upper Ceilling")
+        {   
+            Debug.Log("ddddd");
+            velocity.y = Mathf.Sqrt(bump_force * 2.0f * gravity);  
+        }
+            
     }
 
 

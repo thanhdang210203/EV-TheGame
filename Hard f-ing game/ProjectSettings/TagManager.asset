@@ -16,6 +16,7 @@ TagManager:
   - Ground_Dead
   - cam change line
   - Next lev block
+  - Upper ceilling
   layers:
   - Default
   - TransparentFX
