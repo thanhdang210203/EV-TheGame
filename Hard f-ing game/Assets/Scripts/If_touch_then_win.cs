@@ -21,6 +21,8 @@ public class If_touch_then_win : MonoBehaviour
     public Button Menu;
     public Button quit;
     private bool GameRestarted;
+    private Vector3 velocity;
+    private Cube_movement moveScript;
 
     public void Start()
     {
@@ -75,7 +77,6 @@ public class If_touch_then_win : MonoBehaviour
         }
     }
 
-    
     private IEnumerator MazeGenerate()
     {
         yield return new WaitForSeconds(1.0f);
