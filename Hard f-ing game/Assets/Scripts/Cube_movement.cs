@@ -33,10 +33,12 @@ public class Cube_movement : MonoBehaviour
     public bool Thrid_cam = true;
     public bool TwoD_Cam = false;
     public AudioClip Dashing_Sound;
+    public AudioClip Jump_Sound;
     public float bounce_force;
     private float drag_force = -5.5f;
+    private float drag_force_revres = 5.5f;
     private float DashDirection;
-    public float bump_force = 0.3f;
+    public float bump_force = -0.3f;
 
     private void Start()
     {
@@ -89,27 +91,13 @@ public class Cube_movement : MonoBehaviour
             {
                 //player.AddForce(transform.up * jump, ForceMode.Impulse);
                 velocity.y = Mathf.Sqrt(jump * -3.0f * gravity);
+                AudioSource.PlayClipAtPoint(Jump_Sound, new Vector3(0, 0, 0));
+                StartCoroutine(Jump_Lag());
                 isJumping = false;
                 JumpCounter = JumpTime;
                 Debug.Log("Jumping");
             }
-            //JumpHigher();
         }
-        //void JumpHigher()
-        //{
-        //if (Input.GetKey(KeyCode.Space) && isJumping == true)
-        //    {
-        //        if (JumpCounter > 0)
-        //        {
-        //            velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
-        //            JumpCounter -= Time.deltaTime;
-        //        }
-        //        else
-        //        {
-        //            isJumping = false;
-        //        }
-        //    }
-        //}
 
         //Dash mechanic
         if (Input.GetKeyDown(KeyCode.E) && Dashable == true && Able_To_Dash == true && horizontal != 0 && !isGrounded)
@@ -118,7 +106,7 @@ public class Cube_movement : MonoBehaviour
             Current_Dash_Timer = Dash_Counter;
             if (isDashing == true)
             {
-                StartCoroutine(DashA());
+                StartCoroutine(DashD());
                 StartCoroutine(Latecall_Dash());
             }
 
@@ -127,7 +115,7 @@ public class Cube_movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q) && Dashable == true && Able_To_Dash == true && horizontal != 0 && !isGrounded)
         {
-            StartCoroutine(DashD());
+            StartCoroutine(DashA());
             StartCoroutine(Latecall_Dash());
         }
 
@@ -151,14 +139,14 @@ public class Cube_movement : MonoBehaviour
         IEnumerator DashA()
         {
             AudioSource.PlayClipAtPoint(Dashing_Sound, new Vector3(0, 0, 0));
-            velocity.z = Mathf.Sqrt(dash * -2.0f * drag_force);
+            velocity.z = Mathf.Sqrt(-2.0f * drag_force) * dash_revers;
             //player.AddForce(transform.forward * dash, ForceMode.Force);
-            if (velocity.z > 0)
+            if (velocity.z < 0)
             {
                 DashDirection = horizontal;
-                velocity.z += drag_force * Time.deltaTime;
+                velocity.z -= drag_force_revres * Time.deltaTime;
             }
-            else if (velocity.z < 0)
+            else if (velocity.z > 0)
             {
                 velocity.z = 0f;
                 Dashable = true;
@@ -184,6 +172,13 @@ public class Cube_movement : MonoBehaviour
 
             yield return null;
         }
+
+        IEnumerator Jump_Lag()
+        {
+            AbleToJump = false;
+            yield return new WaitForSeconds(Jump_Sound.length);
+            AbleToJump = true;
+        }
     }
 
     private void OnCollisionEnter(Collision ObjectCollidedWith)
@@ -191,7 +186,24 @@ public class Cube_movement : MonoBehaviour
         if (ObjectCollidedWith.collider.tag == "Upper Ceilling")
         {
             Debug.Log("ddddd");
-            velocity.y = Mathf.Sqrt(bump_force * 2.0f * gravity);
+            velocity.y = Mathf.Sqrt(2.0f * gravity) * bump_force;
         }
     }
+
+    //JumpHigher();
+    //void JumpHigher()
+    //{
+    //if (Input.GetKey(KeyCode.Space) && isJumping == true)
+    //    {
+    //        if (JumpCounter > 0)
+    //        {
+    //            velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
+    //            JumpCounter -= Time.deltaTime;
+    //        }
+    //        else
+    //        {
+    //            isJumping = false;
+    //        }
+    //    }
+    //}
 }
