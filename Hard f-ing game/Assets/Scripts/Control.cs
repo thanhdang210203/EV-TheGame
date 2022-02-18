@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 [RequireComponent(typeof(CharacterController))]
 public class Control : MonoBehaviour
@@ -7,7 +6,7 @@ public class Control : MonoBehaviour
     public float speed = 3.0F;
     public float rotateSpeed = 3.0F;
 
-    void Update()
+    private void Update()
     {
         CharacterController controller = GetComponent<CharacterController>();
 

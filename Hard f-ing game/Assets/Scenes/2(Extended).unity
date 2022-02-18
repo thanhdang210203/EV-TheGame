@@ -14865,7 +14865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 921391311645716280, guid: 2a0e6927f429f5040a7ea464d91656b0, type: 3}
       propertyPath: Dashable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 921391311645716280, guid: 2a0e6927f429f5040a7ea464d91656b0, type: 3}
       propertyPath: TwoD_Cam
@@ -14880,12 +14880,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 921391311645716280, guid: 2a0e6927f429f5040a7ea464d91656b0, type: 3}
+      propertyPath: movespeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 921391311645716280, guid: 2a0e6927f429f5040a7ea464d91656b0, type: 3}
       propertyPath: Jump_Sound
       value: 
       objectReference: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
     - target: {fileID: 921391311645716280, guid: 2a0e6927f429f5040a7ea464d91656b0, type: 3}
       propertyPath: Able_To_Dash
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 921391311645716281, guid: 2a0e6927f429f5040a7ea464d91656b0, type: 3}
       propertyPath: m_Radius

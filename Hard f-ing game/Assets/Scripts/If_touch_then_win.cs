@@ -15,8 +15,8 @@ public class If_touch_then_win : MonoBehaviour
     private Animation Float_Noti;
     private bool playOnce = true;
     public GameObject WinMenu;
-    public GameObject Instruct;
-    public GameObject DeadText;
+    public GameObject Instruct; //Instructions for the player
+    public GameObject DeadText; // In case of the player are too dull to follow intruction, remind them to land on the wall
     public Button Next;
     public Button Menu;
     public Button quit;
@@ -79,13 +79,9 @@ public class If_touch_then_win : MonoBehaviour
 
     private IEnumerator MazeGenerate()
     {
-        yield return new WaitForSeconds(1.0f);
-        GameObject prefab = Instantiate(Maze, new Vector3(6.95f, -258.48f, 88.75381f), Quaternion.identity);
+        yield return new WaitForSeconds(0.7f);
         AudioSource.PlayClipAtPoint(Pop, new Vector3(0, 0, 0));
-    }
-
-    private IEnumerator DestroyNot()
-    {
-        yield return new WaitForSeconds(4.0f);
+        GameObject prefab = Instantiate(Maze, new Vector3(6.95f, -258.48f, 88.75381f), Quaternion.identity);
+        
     }
 }

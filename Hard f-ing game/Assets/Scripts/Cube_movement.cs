@@ -10,7 +10,7 @@ public class Cube_movement : MonoBehaviour
     public float speed = 5.0f;
     public float jump = 2.0f;
     public float dash = 4.0f;
-    private float dash_revers = -4.0f;
+    private float dash_revers = -4.0f; //I was going to use just one key(E) for both direction dashing but I was not quite familiar with using velocity and mathf values
     public float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
     public float gravity = -9.81f;
@@ -157,7 +157,7 @@ public class Cube_movement : MonoBehaviour
         IEnumerator DashD()
         {
             AudioSource.PlayClipAtPoint(Dashing_Sound, new Vector3(0, 0, 0));
-            velocity.z = Mathf.Sqrt(dash_revers * 2.0f * drag_force);
+            velocity.z = Mathf.Sqrt(-2.0f * drag_force) * dash;
             //player.AddForce(transform.forward * dash, ForceMode.Force);
             if (velocity.z > 0)
             {
