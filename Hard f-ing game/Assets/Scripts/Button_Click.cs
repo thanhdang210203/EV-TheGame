@@ -42,6 +42,12 @@ public class Button_Click : MonoBehaviour
         SceneManager.LoadScene("2");
     }
 
+    public void selectMenu()
+    {
+        Debug.Log("Loading Menu");
+        SceneManager.LoadScene("Menu");
+    }
+
     public void selectLevel3()
     {
         Debug.Log("Loading Level");

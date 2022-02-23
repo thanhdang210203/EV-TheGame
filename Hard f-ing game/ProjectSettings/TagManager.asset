@@ -7,16 +7,27 @@ TagManager:
   - Wall
   - Base
   - WinBlock
-  - side camera
   - Line
   - Obstical
   - Object
   - Middle_line
   - maze
   - Ground_Dead
-  - cam change line
-  - Next lev block
   - Upper ceilling
+  - Coin
+  - Door fake
+  - warn
+  - Next lev block
+  - TeleporterA
+  - TeleporterA_Exit
+  - TeleporterB
+  - TeleporterB_Exit
+  - TeleporterC
+  - TeleporterC_Exit
+  - TeleporterD
+  - TeleporterD_Exit
+  - cam change line
+  - win_final
   layers:
   - Default
   - TransparentFX

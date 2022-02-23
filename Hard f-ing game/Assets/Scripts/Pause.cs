@@ -7,6 +7,8 @@ public class Pause : MonoBehaviour
     public static bool GamePaused = false;
     public GameObject pauseMenu;
     public GameObject WinMenu;
+    public GameObject FailMenu;
+    public AudioSource audio;
     public static bool GameWon = false;
 
     private void Start()
@@ -15,6 +17,7 @@ public class Pause : MonoBehaviour
         GameWon = false;
         pauseMenu.SetActive(false);
         WinMenu.SetActive(false);
+        FailMenu.SetActive(false);
     }
 
     private void Update()
@@ -35,6 +38,7 @@ public class Pause : MonoBehaviour
     private void Resume()
     {
         pauseMenu.SetActive(false);
+        audio.Play(0);
         Time.timeScale = 1f;
         GamePaused = false;
     }
@@ -42,6 +46,7 @@ public class Pause : MonoBehaviour
     private void StopGame()
     {
         pauseMenu.SetActive(true);
+        audio.Pause();   
         Time.timeScale = 0f;
         GamePaused = true;
     }
@@ -56,6 +61,7 @@ public class Pause : MonoBehaviour
     public void ResumeGame()
     {
         pauseMenu.SetActive(false);
+        audio.Play(0);
         Time.timeScale = 1f;
         GamePaused = false;
     }
