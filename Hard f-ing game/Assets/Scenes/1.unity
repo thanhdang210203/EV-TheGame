@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.71129435, g: 0.8008629, b: 0.88006836, a: 1}
+  m_IndirectSpecularColor: {r: 0.31308508, g: 0.29375178, b: 0.51411253, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2033,7 +2033,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730224201}
-  m_LocalRotation: {x: 0.134, y: -0.6845357, z: 0.13017794, w: 0.7046338}
+  m_LocalRotation: {x: 0.13399999, y: -0.6845357, z: 0.13017796, w: 0.7046338}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2118,7 +2118,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753472260}
-  m_LocalRotation: {x: 0.23782153, y: 0.01405103, z: -0.0034407268, w: 0.9712011}
+  m_LocalRotation: {x: 0.23782155, y: 0.014051046, z: -0.0034407307, w: 0.9712011}
   m_LocalPosition: {x: 21.138054, y: 3.5679998, z: -46.963566}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2662,7 +2662,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930662267}
-  m_LocalRotation: {x: 0.1705982, y: -0.6768074, z: 0.16573228, w: 0.6966785}
+  m_LocalRotation: {x: 0.17059818, y: -0.6768073, z: 0.16573226, w: 0.6966785}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3053,7 +3053,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082308468}
-  m_LocalRotation: {x: 0.20754977, y: -0.6669938, z: 0.20162989, w: 0.6865769}
+  m_LocalRotation: {x: 0.2075498, y: -0.66699386, z: 0.20162992, w: 0.68657684}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3304,6 +3304,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 608522082746136637, guid: 749572f898f5bc14281b2fd62f02cee0, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1267557387297942500, guid: 749572f898f5bc14281b2fd62f02cee0, type: 3}
       propertyPath: cam
       value: 

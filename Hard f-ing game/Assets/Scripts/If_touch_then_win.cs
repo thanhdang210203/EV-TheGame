@@ -67,7 +67,7 @@ public class If_touch_then_win : MonoBehaviour
         else if (ObjectCollidedWith.collider.tag == "warn")
         {
             Warn_Sign.SetActive(true);
-            Debug.Log("fjdsklsdjf");
+            
         }
         else if (ObjectCollidedWith.collider.tag == "Next lev block")
         {
